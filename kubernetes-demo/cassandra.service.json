@@ -27,28 +27,24 @@
         "port": 7199,
         "targetPort": 7199
       },{
-	    "name":"monitor-d-db",
-        "port": 27017,
-        "targetPort": 27017
+	    "name":"monitor-d-cassandra-intercom",
+        "port": 7000,
+        "targetPort": 7000
       },{
-	    "name":"monitor-d-db",
-        "port": 27017,
-        "targetPort": 27017
+	    "name":"monitor-d-cassandra-tls-intercom",
+        "port": 7001,
+        "targetPort": 7001
       },
       {
-	    "name":"monitor-d-db",
-        "port": 27017,
-        "targetPort": 27017
+	    "name":"monitor-d-cassandra-thrift-client",
+        "port": 9160,
+        "targetPort": 9160
+      },
+      {
+	    "name":"monitor-d-cassandra-cql-transport",
+        "port": 9042,
+        "targetPort": 9042
       }
-
-/*
-7199 - JMX (was 8080 pre Cassandra 0.8.xx)
-7000 - Internode communication (not used if TLS enabled)
-7001 - TLS Internode communication (used if TLS enabled)
-9160 - Thrift client API
-9042 - CQL native transport port
-*/
-
     ],
     "selector": {
       "name": "monitor-d"
