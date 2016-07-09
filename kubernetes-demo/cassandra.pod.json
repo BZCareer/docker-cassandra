@@ -1,0 +1,54 @@
+{
+	"apiVersion": "v1",
+	"kind": "Pod",
+	"metadata": {
+		"name": "monitor-d-new",
+		"labels": {
+			"name": "monitor-d"
+		}
+	},
+	"spec": {
+		"containers": [{
+			"name": "monitor-d-ui",
+			"image": "docker.io/bzcareer/monitord",
+			"ports": [{
+				"containerPort": 8080
+			}]
+		}, {
+			"name": "monitor-d-backend",
+			"image": "docker.io/bzcareer/monitord-core-api",
+			"ports": [{
+				"containerPort": 8181
+			}]
+		}, {
+			"name": "monitor-d-analytics-db",
+			"image": "docker.io/bzcareer/docker-cassandra",
+			"env": [{
+				"name": "CASSIE_APP_NAME",
+				"value": "BZCAREER-MONITOR.D"
+			}],
+			"ports": [{
+				"containerPort": 7199
+			}, {
+				"containerPort": 7000
+			}, {
+				"containerPort": 7001
+			}, {
+				"containerPort": 9160
+			}, {
+				"containerPort": 9042
+			}, {
+				"containerPort": 8012
+			}, {
+				"containerPort": 61621
+			}]
+		}, {
+			"name": "monitor-d-database",
+			"image": "docker.io/mongo",
+			"ports": [{
+				"containerPort": 27017
+			}]
+		}]
+
+	}
+}

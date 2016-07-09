@@ -39,7 +39,7 @@ docker build --rm -t bzcareer/docker-cassandra .
  ```
 docker run --add-host="hadoopmaster:192.168.33.40"  --add-host="hadoopdata1:192.168.33.41" --add-host="hadoopdata2:192.168.33.42"  -it -P  --hostname cassandra.hadoopdata.com bzcareer/docker-cassandra
  ```
-## Running the image
+## Running the image in docker standalone
 
 * if using boot2docker make sure your VM has more than 2GB memory
 for single standalone mode:
@@ -50,6 +50,16 @@ or for clustermode:
 ```
 docker run -e "CASSIE_SEEDS=hadoopmaster,hadoopdata1,hadoopdata2" -it -P  -h cassandra-1 bzcareer/docker-cassandra
 ```
+
+## Running on kubernetes/openshift-origin
+
+```
+[ cassanda-admin@localhost] $ oc new-project cloudcassandra
+Now using project "cloudcassandra" on server "https://10.2.2.2:8443".
+...
+
+[ cassanda-admin@localhost] $
+
 ## Versions
 ```
 Apache Cassandra v3.7 on Ubuntu with Java 8
