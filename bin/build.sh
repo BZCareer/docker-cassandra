@@ -9,7 +9,5 @@ echo ' / /|_/ / _ \/ _ \/ / __/ _ \/ __/ / // /'
 echo '/_/  /_/\___/_//_/_/\__/\___/_/   /____/ '
 
 echo   " Building Cassandra Database in Docker "
-docker   build  --rm -t  bzcareer/docker-cassandra  ../
-
-echo "Pushing containers up to docker hub"
- docker push bzcareer/docker-cassandra
+docker   build   -t  bzcareer/docker-cassandra:$VERSION  ../
+echo "\n\n\nTip: Run docker run bzcareer/docker-cassandra:$VERSION -P \n"
