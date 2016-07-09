@@ -7,8 +7,9 @@ RUN wget http://apache.mirror.vexxhost.com/cassandra/3.7/apache-cassandra-3.7-bi
 RUN apt-get install python -y
 RUN adduser hadoop --system
 
-RUN cd /usr/local &&  mv /usr/local/apache-cassandra-3.7  /usr/local/cassandra && chown -Rv hadoop:hadoop /usr/local/cassandra
-USER hadoop
+RUN cd /usr/local &&  mv /usr/local/apache-cassandra-3.7  /usr/local/cassandra
+#&& chown -Rv hadoop /usr/local/cassandra
+#USER hadoop
 
 ENV CASSANDRA_HOME /usr/local/cassandra
 

@@ -8,7 +8,6 @@ if [ -z "$CASSIE_SEEDS" ]; then
 else
   echo "CASSIE_SEEDS is set"
   sed -i -e "s/- seeds: .*/- seeds: \"$CASSIE_SEEDS\"/" /usr/local/cassandra/conf/cassandra.yaml
-
 fi
 
 sed -i -e "s/listen_address:.*/listen_address: $(cat /etc/hosts  |grep $HOSTNAME  | awk '{print $1}')/"  /usr/local/cassandra/conf/cassandra.yaml
@@ -18,8 +17,3 @@ echo "broadcast_rpc_address: $(cat /etc/hosts  |grep $HOSTNAME  | awk '{print $1
 # RUN CASSANDRA
 /usr/local/cassandra/bin/cassandra -R
 /bin/bash
-
-if [ -z "$ZAK" ]; then
-    echo "Need to set ZAK"
-    exit 1
-fi
