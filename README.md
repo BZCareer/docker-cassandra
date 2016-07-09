@@ -26,9 +26,19 @@ docker build --rm -t bzcareer/docker-cassandra .
 ### `CASSIE_SEEDS`
  * Used for setting seeds for the cassandra cluster
  * It should be a comma separated list of server hostnames in your cluster for example:
- "hadoopmaster,hadoopdata1,hadoopdata2"
+ ```
+ -e "CASSIE_SEEDS=hadoopmaster,hadoopdata1,hadoopdata2"
+ ```
  * See below section titled `Running the image`
  * Warning: Its recommended that you don't set this variable unless you already have a cluster defined.
+
+### Tip
+  #### Use --add-host to append values to /etc/hosts
+ * Used for setting the mapping between hosts names and ip address.
+ * Format to pass will be like so $HOST $IP, $HOST2 $IP, ... For example:
+ ```
+docker run --add-host="hadoopmaster:192.168.33.40"  --add-host="hadoopdata1:192.168.33.41" --add-host="hadoopdata2:192.168.33.42"  -it -P  --hostname cassandra.hadoopdata.com bzcareer/docker-cassandra
+ ```
 ## Running the image
 
 * if using boot2docker make sure your VM has more than 2GB memory
