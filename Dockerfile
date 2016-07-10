@@ -8,12 +8,15 @@ RUN apt-get install python -y
 RUN adduser hadoop --system
 
 RUN cd /usr/local &&  mv /usr/local/apache-cassandra-3.7  /usr/local/cassandra
-#&& chown -Rv hadoop /usr/local/cassandra
-#USER hadoop
+# && chown -Rv hadoop /usr/local/cassandra
+# USER hadoop
 
 ENV CASSANDRA_HOME /usr/local/cassandra
-
 COPY entrypoint.sh /etc/entrypoint.sh
+
+COPY cassandra.conf  /etc/security/limits.d/cassandra.conf
+COPY limits.conf /etc/security/limits.conf
+RUN sysctl -p
 
 ENV PATH $PATH:$CASSANDRA_HOME/bin
 
