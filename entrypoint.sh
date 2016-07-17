@@ -12,10 +12,12 @@ fi
 
 if [ -z "$CASSIE_BROADCAST_HOSTNAME" ]; then
   sed -i -e "s/listen_address:.*/listen_address:  $CASSIE_BROADCAST_HOSTNAME  /"  /usr/local/cassandra/conf/cassandra.yaml
+  sed -i -e "s/rpc_address:.*/rpc_address:  $CASSIE_BROADCAST_HOSTNAME  /"  /usr/local/cassandra/conf/cassandra.yaml
   echo "broadcast_address: $CASSIE_BROADCAST_HOSTNAME " >>  /usr/local/cassandra/conf/cassandra.yaml
   echo "broadcast_rpc_address: $CASSIE_BROADCAST_HOSTNAME "  >>  /usr/local/cassandra/conf/cassandra.yaml
 else
   sed -i -e "s/listen_address:.*/listen_address: $(cat /etc/hosts  |grep $HOSTNAME  | awk '{print $1}')/"  /usr/local/cassandra/conf/cassandra.yaml
+  sed -i -e "s/rpc_address:.*/rpc_address:  $(cat /etc/hosts  |grep $HOSTNAME  | awk '{print $1}')  /"  /usr/local/cassandra/conf/cassandra.yaml
   echo "broadcast_address: $(cat /etc/hosts  |grep $HOSTNAME  | awk '{print $1}')" >>  /usr/local/cassandra/conf/cassandra.yaml
   echo "broadcast_rpc_address: $(cat /etc/hosts  |grep $HOSTNAME  | awk '{print $1}')" >>  /usr/local/cassandra/conf/cassandra.yaml
 fi
