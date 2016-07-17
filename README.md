@@ -21,6 +21,36 @@ or via docker commands:
 ```
 docker build --rm -t bzcareer/docker-cassandra .
 ```
+
+## Using Cassandra on Openshift Origin Node
+
+```
+sudo docker cp <CONTAINER_ID>:/usr/local/cassandra  /usr/local/cassandra
+```
+Tip: You will find the container id if you type:
+
+```
+oc describe pod <pod_name>
+
+```
+
+TODO: Create a video demonstration of this in action.
+```
+[vagrant@localhost ~]$ sudo !!
+sudo docker cp a255e07161d6:/usr/local/cassandra  /usr/local/cassandra
+[vagrant@localhost ~]$ ls /usr/local/cassandra/
+CHANGES.txt  LICENSE.txt  NEWS.txt  NOTICE.txt  bin  conf  data  doc  interface  javadoc  lib  logs  pylib  tools
+[vagrant@localhost ~]$ oc get services
+NAME        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                    AGE
+monitor-d   172.30.143.165                 8080/TCP,8181/TCP,7199/TCP,7000/TCP,7001/TCP,9160/TCP,9042/TCP,27017/TCP   18h
+[vagrant@localhost ~]$ export CASSANDRA_HOME=/usr/local/cassandra
+[vagrant@localhost ~]$ export PATH=$PATH:$CASSANDRA_HOME/bin
+[vagrant@localhost ~]$ cqlsh 172.30.143.165
+No appropriate python interpreter found.
+[vagrant@localhost ~]$ sudo yum install python
+
+```
+
 ## Environment Variables
 
 ### `CASSIE_SEEDS`
